@@ -1,6 +1,7 @@
 using Maui.BindableProperty.Generator.Core;
 
 #pragma warning disable IDE0052, CS0169
+[assembly: XmlnsDefinition("https://schemas.gd.com/dotnet/2024/maui", "UiToolkit.Maui.Controls")]
 namespace UiToolkit.Maui.Controls;
 
 public partial class SegmentedButton : ContentView

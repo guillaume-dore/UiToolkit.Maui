@@ -16,7 +16,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="M.BindableProperty.Generator" />
+		<PackageReference Include="M.BindableProperty.Generator" PrivateAssets="all" />
 		<PackageReference Include="Microsoft.Maui.Controls" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" />
 	</ItemGroup>
