@@ -16,8 +16,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="M.BindableProperty.Generator" />
 		<PackageReference Include="Microsoft.Maui.Controls" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="SegmentedButton.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>
