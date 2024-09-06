@@ -1,7 +1,5 @@
 using Maui.BindableProperty.Generator.Core;
 
-#pragma warning disable IDE0052, CS0169
-[assembly: XmlnsDefinition("https://schemas.gd.com/dotnet/2024/maui", "UiToolkit.Maui.Controls")]
 namespace UiToolkit.Maui.Controls;
 
 public partial class SegmentedButton : ContentView
@@ -41,7 +39,7 @@ public partial class SegmentedButton : ContentView
 		InitializeComponent();
 	}
 
-	public string GroupName => Guid.NewGuid().ToString();
+	public string GroupName { get; } = Guid.NewGuid().ToString();
 
 	private void SegmentItem_Clicked(object sender, EventArgs e)
 		=> SelectedItem = ((Button)sender).Text;

@@ -23,19 +23,13 @@
                                             <VisualStateGroup x:Name="CheckedStates">
                                                 <VisualState x:Name="Checked">
                                                     <VisualState.Setters>
-                                                        <Setter TargetName="SegmentItem" Property="Button.ImageSource">
-                                                            <Setter.Value>
-                                                                <FontImageSource Glyph="{StaticResource IconMD_Check}"  FontFamily="MaterialIconsRound" Color="{Binding Source={x:Reference this}, Path=SelectedColor}"/>
-                                                            </Setter.Value>
-                                                        </Setter>
-                                                        <Setter TargetName="SegmentItem" Property="Button.ContentLayout" Value="Left, 5"/>
                                                         <Setter TargetName="SegmentItem" Property="Button.TextColor" Value="{Binding Source={x:Reference this}, Path=SelectedColor}"/>
                                                         <Setter TargetName="SegmentItem" Property="Button.BackgroundColor" Value="{Binding Source={x:Reference this}, Path=SelectedBackground}"/>
                                                     </VisualState.Setters>
                                                 </VisualState>
                                                 <VisualState x:Name="Unchecked">
                                                     <VisualState.Setters>
-                                                    <Setter TargetName="SegmentItem" Property="Button.TextColor" Value="{Binding Source={x:Reference this}, Path=UnselectedColor}" />
+                                                        <Setter TargetName="SegmentItem" Property="Button.TextColor" Value="{Binding Source={x:Reference this}, Path=UnselectedColor}" />
                                                         <Setter TargetName="SegmentItem" Property="Button.BackgroundColor" Value="{Binding Source={x:Reference this}, Path=UnselectedBackground}" />
                                                     </VisualState.Setters>
                                                 </VisualState>
