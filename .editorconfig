@@ -1,0 +1,6 @@
+﻿[*.cs]
+
+# IDE0052: Supprimer les membres privés non lus
+dotnet_diagnostic.IDE0052.severity = none
+# The private field 'class member' is never used
+dotnet_diagnostic.CS0169.severity = none
