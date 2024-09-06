@@ -7,9 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UiToolkit.Maui.Controls", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UiToolkit.Maui.Controls.Sample", "sample\UiToolkit.Maui.Controls.Sample.csproj", "{8034D6F7-36BC-4D59-9A2A-ED47E1865D5D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Éléments de solution", "Éléments de solution", "{BF48BE3A-0EB3-4C14-89A7-469A83EF6240}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5A563282-AA0E-485D-80CF-A3526112AC81}"
 	ProjectSection(SolutionItems) = preProject
-		Directory.Packages.props = Directory.Packages.props
 		README.md = README.md
 	EndProjectSection
 EndProject
