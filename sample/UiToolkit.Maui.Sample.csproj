@@ -51,7 +51,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\src\UiToolkit.Maui.Controls.csproj" />
+	  <ProjectReference Include="..\src\UiToolkit.Maui.csproj" />
 	</ItemGroup>
 
 </Project>
