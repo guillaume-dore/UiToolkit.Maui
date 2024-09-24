@@ -6,12 +6,12 @@ namespace UiToolkit.Maui.Converters;
 /// 
 /// </summary>
 /// <typeparam name="TIn"></typeparam>
-public class BoolFuncConverter<TIn> : IValueConverter
+public class BoolFuncConverter<TIn, TOut> : IValueConverter
 {
 	/// <summary>
 	/// Func provided to 
 	/// </summary>
-	public Func<TIn, bool> Func { get; set; } = null!;
+	public Func<TIn, TOut> Func { get; set; } = null!;
 
 	/// <summary>
 	/// 
