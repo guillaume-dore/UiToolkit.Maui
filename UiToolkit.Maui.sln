@@ -9,7 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UiToolkit.Maui.Sample", "sa
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5A563282-AA0E-485D-80CF-A3526112AC81}"
 	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
 		README.md = README.md
 	EndProjectSection
 EndProject
