@@ -6,6 +6,8 @@ using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 using Microsoft.Maui.Controls.Compatibility.Platform.Android.AppCompat;
 using Microsoft.Maui.Controls.Platform;
 using UiToolkit.Maui.Controls;
+using ShapeDrawable = Android.Graphics.Drawables.ShapeDrawable;
+using Android.Graphics.Drawables.Shapes;
 
 namespace UiToolkit.Maui;
 
@@ -25,7 +27,13 @@ public class IconPickerRenderer(Context context) : PickerRenderer(context)
 
 	private LayerDrawable AddPickerImage(ImageSource source)
 	{
-		LayerDrawable layerDrawable = new([GetDrawable(source).Result]);
+		ShapeDrawable border = new ShapeDrawable();
+		border.Paint!.Color = Android.Graphics.Color.Black;
+		border.SetPadding(10, 10, 10, 10);
+		border.Shape = new RoundRectShape(Enumerable.Repeat(40f, 8).ToArray(), null, null);
+		border.Paint.SetStyle(Android.Graphics.Paint.Style.Stroke);
+
+		LayerDrawable layerDrawable = new([border, GetDrawable(source).Result]);
 		layerDrawable.SetLayerInset(0, 0, 0, 0, 0);
 		return layerDrawable;
 	}
@@ -34,7 +42,7 @@ public class IconPickerRenderer(Context context) : PickerRenderer(context)
 	{
 		Drawable drawable;
 		if (source is FontImageSource font)
-			drawable = new FontDrawable(Context!, font.Glyph, Android.Graphics.Color.Black, 32, "MaterialIconsRound-Regular.otf");
+			drawable = new FontDrawable(Context!, font.Glyph, Android.Graphics.Color.Black, Convert.ToInt32(font.Size), "MaterialIconsRound-Regular.otf"); // TODO: add font family and recover filename from font family
 		else
 		{
 			var renderer = new StreamImagesourceHandler();

@@ -35,7 +35,7 @@
 
             <Label Text="{Binding Source={x:Reference this}, Path=Status, Converter={StaticResource enumStringConverter}}"/>
 
-            <uikit:IconPicker Source="{FontImage FontFamily='MaterialIconsRound', Glyph={StaticResource IconMD_Expand_more}}">
+            <uikit:IconPicker Source="{FontImage FontFamily='MaterialIconsRound', Glyph={StaticResource IconMD_Expand_more}}" HorizontalTextAlignment="Center" Title="Select a monkey">
                 <uikit:IconPicker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Baboon</x:String>
