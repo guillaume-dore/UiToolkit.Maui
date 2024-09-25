@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 
-namespace UiToolkit.Maui.Controls.Sample;
+namespace UiToolkit.Maui.Sample;
 [Application]
 public class MainApplication : MauiApplication
 {

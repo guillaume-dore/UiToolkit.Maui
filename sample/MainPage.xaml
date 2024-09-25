@@ -1,14 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:view="clr-namespace:UiToolkit.Maui.Controls.Sample"
+             xmlns:view="clr-namespace:UiToolkit.Maui.Sample"
              xmlns:uikit="https://schemas.gd.com/dotnet/2024/maui"
-             x:Class="UiToolkit.Maui.Controls.Sample.MainPage"
+             x:Class="UiToolkit.Maui.Sample.MainPage"
              x:Name="this">
     <ContentPage.Resources>
         <uikit:EnumToStringConverter x:Key="enumStringConverter"/>
-        <uikit:BoolFuncConverter x:Key="boolFuncConverter" x:TypeArguments="view:Person">
-        </uikit:BoolFuncConverter>
     </ContentPage.Resources>
     <ScrollView>
         <VerticalStackLayout
@@ -36,16 +34,6 @@
             <Button Text="Swap condition" Clicked="Button_Clicked"/>
 
             <Label Text="{Binding Source={x:Reference this}, Path=Status, Converter={StaticResource enumStringConverter}}"/>
-
-            <Label Text="{Binding Source={x:Reference this}, Path=Person1.FirstName}">
-                <Label.IsVisible>
-                    <Binding Source="{x:Reference this}" Path="Person1">
-                        <Binding.Converter>
-                            <uikit:BoolFuncConverter x:TypeArguments="view:Person" Func="{Binding Source={x:Reference this}, Path=ConditionAsFunction}"/>
-                        </Binding.Converter>
-                    </Binding>
-                </Label.IsVisible>
-            </Label>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace UiToolkit.Maui.Controls.Sample;
+namespace UiToolkit.Maui.Sample;
 public static class MauiProgram
 {
 	public static MauiApp CreateMauiApp()

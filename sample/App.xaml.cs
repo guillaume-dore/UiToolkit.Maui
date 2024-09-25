@@ -1,4 +1,4 @@
-﻿namespace UiToolkit.Maui.Controls.Sample;
+﻿namespace UiToolkit.Maui.Sample;
 
 public partial class App : Application
 {

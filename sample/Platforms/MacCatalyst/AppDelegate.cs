@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace UiToolkit.Maui.Controls.Sample;
+namespace UiToolkit.Maui.Sample;
 [Register("AppDelegate")]
 public class AppDelegate : MauiUIApplicationDelegate
 {

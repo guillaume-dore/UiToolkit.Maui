@@ -1,8 +1,8 @@
 ﻿<maui:MauiWinUIApplication
-    x:Class="UiToolkit.Maui.Controls.Sample.WinUI.App"
+    x:Class="UiToolkit.Maui.Sample.WinUI.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:maui="using:Microsoft.Maui"
-    xmlns:local="using:UiToolkit.Maui.Controls.Sample.WinUI">
+    xmlns:local="using:UiToolkit.Maui.Sample.WinUI">
 
 </maui:MauiWinUIApplication>
