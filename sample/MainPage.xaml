@@ -34,6 +34,20 @@
             <Button Text="Swap condition" Clicked="Button_Clicked"/>
 
             <Label Text="{Binding Source={x:Reference this}, Path=Status, Converter={StaticResource enumStringConverter}}"/>
+
+            <uikit:IconPicker Source="{FontImage FontFamily='MaterialIconsRound', Glyph={StaticResource IconMD_Expand_more}}">
+                <uikit:IconPicker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Baboon</x:String>
+                        <x:String>Capuchin Monkey</x:String>
+                        <x:String>Blue Monkey</x:String>
+                        <x:String>Squirrel Monkey</x:String>
+                        <x:String>Golden Lion Tamarin</x:String>
+                        <x:String>Howler Monkey</x:String>
+                        <x:String>Japanese Macaque</x:String>
+                    </x:Array>
+                </uikit:IconPicker.ItemsSource>
+            </uikit:IconPicker>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
