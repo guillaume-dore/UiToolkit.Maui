@@ -10,10 +10,6 @@ public static class MauiAppBuilderExtensions
 	public static MauiAppBuilder UseUiToolkit(this MauiAppBuilder builder)
 	{
 		builder.UseMauiCompatibility();
-#if ANDROID
 		return builder.ConfigureMauiHandlers(cfg => cfg.AddCompatibilityRenderer<IconPicker, IconPickerRenderer>());
-#endif
-		return builder;
 	}
-
 }
