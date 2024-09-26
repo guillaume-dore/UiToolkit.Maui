@@ -1,12 +1,12 @@
 ﻿using Android.Content;
+using Android.Content.Res;
 using Android.Graphics;
-using Android.Views;
 using Android.Graphics.Drawables;
+using Android.Views;
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 using Microsoft.Maui.Controls.Compatibility.Platform.Android.AppCompat;
 using Microsoft.Maui.Controls.Platform;
 using UiToolkit.Maui.Controls;
-using Android.Content.Res;
 
 namespace UiToolkit.Maui;
 
@@ -28,12 +28,13 @@ public class IconPickerRenderer(Context context) : PickerRenderer(context)
 	{
 		GradientDrawable border = new GradientDrawable();
 		border.SetShape(ShapeType.Rectangle);
+		border.SetPadding(10, 10, 10, 10);
 		border.SetCornerRadius(element.CornerRadius);
 		border.SetColor(ColorStateList.ValueOf(element.BackgroundColor?.ToAndroid() ?? Android.Graphics.Color.Transparent));
 		border.SetStroke(Convert.ToInt32(element.StrokeThickness), element.Stroke?.ToAndroid() ?? Android.Graphics.Color.Black);
 
 		LayerDrawable layerDrawable = new([border, GetDrawable(element.Source).Result]);
-		layerDrawable.SetLayerInset(0, 0, 0, 0, 0);
+		layerDrawable.SetLayerInset(0, 20, 0, 0, 0);
 		return layerDrawable;
 	}
 
