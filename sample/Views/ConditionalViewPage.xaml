@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:uikit="https://schemas.gd.com/dotnet/2024/maui"
+             x:Class="UiToolkit.Maui.Sample.Views.ConditionalViewPage"
+             Title="ConditionalView Demo"
+             x:Name="this">
+    <VerticalStackLayout Padding="20, 32" Spacing="20">
+        <uikit:ConditionalView Condition="{Binding Source={x:Reference this}, Path=Condition}">
+            <uikit:ConditionalView.True>
+                <Border Padding="10" StrokeShape="RoundRectangle 10, 10, 10, 10" StrokeThickness="2" BackgroundColor="Green">
+                    <Label Text="You are in the true condition view"/>
+                </Border>
+            </uikit:ConditionalView.True>
+            <uikit:ConditionalView.False>
+                <Border Padding="10" StrokeShape="RoundRectangle 10, 10, 10, 10" StrokeThickness="2" BackgroundColor="Red">
+                    <Label Text="You are in the false condition view"/>
+                </Border>
+            </uikit:ConditionalView.False>
+        </uikit:ConditionalView>
+
+        <Button Text="Swap condition" Clicked="Button_Clicked" HorizontalOptions="Center"/>
+    </VerticalStackLayout>
+</ContentPage>

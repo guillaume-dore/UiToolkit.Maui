@@ -1,57 +1,103 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:view="clr-namespace:UiToolkit.Maui.Sample"
              xmlns:uikit="https://schemas.gd.com/dotnet/2024/maui"
+             xmlns:sample="clr-namespace:UiToolkit.Maui.Sample"
              x:Class="UiToolkit.Maui.Sample.MainPage"
-             x:Name="this">
+             Title="UiToolkit Maui"
+             x:Name="this" Padding="5,20">
     <ContentPage.Resources>
-        <uikit:EnumToStringConverter x:Key="enumStringConverter"/>
+        <Style TargetType="Border">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="Transparent"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
     </ContentPage.Resources>
-    <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-            <uikit:SegmentedButton
-                HeightRequest="40" 
-                SegmentItems="{Binding Source={x:Reference this}, Path=Items}" 
-                SelectedItem="{Binding SelectedItem}"
-                StrokeThickness="1" 
-                Stroke="{AppThemeBinding Light={StaticResource Gray600}, Dark='White'}"
-                SelectedColor="{AppThemeBinding Light='White', Dark={StaticResource Gray600}}"
-                SelectedBackground="{AppThemeBinding Light={StaticResource Gray600}, Dark='White'}"
-                UnselectedColor="{AppThemeBinding Light={StaticResource Gray600}, Dark='White'}"
-                UnselectedBackground="{AppThemeBinding Light='White', Dark={StaticResource Gray600}}"/>
+    <CollectionView 
+        ItemsSource="{Binding Items, Source={x:Reference this}}"
+        SelectionMode="Single"
+        SelectionChanged="CollectionView_SelectionChanged"
+        x:Name="collection">
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Vertical" ItemSpacing="20"/>
+        </CollectionView.ItemsLayout>
+        <CollectionView.ItemTemplate x:DataType="sample:UiToolkitItem">
+            <DataTemplate>
+                <Border Stroke="{StaticResource Gray500}" StrokeShape="RoundRectangle 10, 10, 10, 10" Padding="5">
+                    <Grid RowDefinitions="2*,1*" ColumnDefinitions="*,Auto">
+                        <Label Text="{Binding Name}" FontAttributes="Bold"/>
+                        <Label Grid.Row="1" Text="{Binding Details}" TextColor="{StaticResource Gray300}" LineBreakMode="WordWrap" MaxLines="2"/>
+                        <Image Grid.Column="1" Grid.RowSpan="2" VerticalOptions="Center" Source="{FontImage FontFamily='MaterialIconsRound', Glyph={StaticResource IconMD_Navigate_next}, Color={StaticResource DarkGray}}"/>
+                    </Grid>
+                </Border>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+        <!--<ListView ItemsSource="{Binding Source={x:Reference this}, Path=Items}"/>-->
 
-            <uikit:ConditionalView Condition="{Binding Source={x:Reference this}, Path=Condition}">
-                <uikit:ConditionalView.True>
-                    <Label Text="Condition True"/>    
-                </uikit:ConditionalView.True>
-                <uikit:ConditionalView.False>
-                    <Label Text="Condition False"/>
-                </uikit:ConditionalView.False>
-            </uikit:ConditionalView>
-            <Button Text="Swap condition" Clicked="Button_Clicked"/>
+        <!--<ListView ItemsSource="{Binding Items, Source={x:Reference this}}" IsGroupingEnabled="True">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="sample:UiToolkitItem">
+                    <ViewCell>
+                        <Grid RowDefinitions="2*,1*" ColumnDefinitions="Auto,*" RowSpacing="10" HeightRequest="65">
+                            <Label Text="{Binding Name}" FontAttributes="Bold" Margin="10,0,10,0"/>
+                            <Label Grid.Row="1" Text="{Binding Details}" TextColor="{StaticResource Gray300}"/>
+                            <Image Grid.Column="1" Grid.RowSpan="2" Source="{FontImage FontFamily='MaterialIconsRound', Glyph={StaticResource IconMD_Navigate_next}, Color={StaticResource DarkGray}}"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>-->
+    <!-- <VerticalStackLayout
+        Padding="30,0"
+        Spacing="25">
+        <uikit:SegmentedButton
+            HeightRequest="40" 
+            SegmentItems="{Binding Source={x:Reference this}, Path=Items}" 
+            SelectedItem="{Binding SelectedItem}"
+            StrokeThickness="1" 
+            Stroke="{AppThemeBinding Light={StaticResource Gray600}, Dark='White'}"
+            SelectedColor="{AppThemeBinding Light='White', Dark={StaticResource Gray600}}"
+            SelectedBackground="{AppThemeBinding Light={StaticResource Gray600}, Dark='White'}"
+            UnselectedColor="{AppThemeBinding Light={StaticResource Gray600}, Dark='White'}"
+            UnselectedBackground="{AppThemeBinding Light='White', Dark={StaticResource Gray600}}"/>
 
-            <Label Text="{Binding Source={x:Reference this}, Path=Status, Converter={StaticResource enumStringConverter}}"/>
+        <uikit:ConditionalView Condition="{Binding Source={x:Reference this}, Path=Condition}">
+            <uikit:ConditionalView.True>
+                <Label Text="Condition True"/>
+            </uikit:ConditionalView.True>
+            <uikit:ConditionalView.False>
+                <Label Text="Condition False"/>
+            </uikit:ConditionalView.False>
+        </uikit:ConditionalView>
+        <Button Text="Swap condition" Clicked="Button_Clicked"/>
 
-            <uikit:IconPicker 
-                Source="{FontImage FontFamily='MaterialIconsRound', Glyph={StaticResource IconMD_Expand_more}, Size=5, Color={StaticResource DarkGray}}" 
-                TextColor="{StaticResource DarkGray}" TitleColor="{StaticResource DarkGray}" 
-                HorizontalTextAlignment="Center" Title="Select a monkey"
-                CornerRadius="50" StrokeThickness="5" Stroke="{StaticResource DarkGray}">
-                <uikit:IconPicker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Baboon</x:String>
-                        <x:String>Capuchin Monkey</x:String>
-                        <x:String>Blue Monkey</x:String>
-                        <x:String>Squirrel Monkey</x:String>
-                        <x:String>Golden Lion Tamarin</x:String>
-                        <x:String>Howler Monkey</x:String>
-                        <x:String>Japanese Macaque</x:String>
-                    </x:Array>
-                </uikit:IconPicker.ItemsSource>
-            </uikit:IconPicker>
-        </VerticalStackLayout>
-    </ScrollView>
+        <Label Text="{Binding Source={x:Reference this}, Path=Status, Converter={StaticResource enumStringConverter}}"/>
+
+        <uikit:IconPicker 
+            Source="{FontImage FontFamily='MaterialIconsRound', Glyph={StaticResource IconMD_Expand_more}, Size=5, Color={StaticResource DarkGray}}" 
+            TextColor="{StaticResource DarkGray}" TitleColor="{StaticResource DarkGray}" 
+            HorizontalTextAlignment="Center" Title="Select a monkey"
+            CornerRadius="50" StrokeThickness="5" Stroke="{StaticResource DarkGray}">
+            <uikit:IconPicker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Baboon</x:String>
+                    <x:String>Capuchin Monkey</x:String>
+                    <x:String>Blue Monkey</x:String>
+                    <x:String>Squirrel Monkey</x:String>
+                    <x:String>Golden Lion Tamarin</x:String>
+                    <x:String>Howler Monkey</x:String>
+                    <x:String>Japanese Macaque</x:String>
+                </x:Array>
+            </uikit:IconPicker.ItemsSource>
+        </uikit:IconPicker>
+    </VerticalStackLayout> -->
 </ContentPage>

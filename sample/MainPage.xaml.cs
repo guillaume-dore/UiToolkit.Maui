@@ -1,43 +1,47 @@
-﻿namespace UiToolkit.Maui.Sample;
+﻿using System.Windows.Input;
+using UiToolkit.Maui.Sample.Views;
+
+namespace UiToolkit.Maui.Sample;
 
 public partial class MainPage : ContentPage
 {
-	public MainPage()
+	public MainPage() => InitializeComponent();
+
+	public List<UiToolkitItem> Items => [
+		new UiToolkitItem
+		{
+			Name = "ConditionalView",
+			Details = "Conditionnaly display view based on boolean binding result.",
+			Command = new Command(() => Shell.Current.Navigation.PushAsync(new ConditionalViewPage()))
+		},
+		new UiToolkitItem
+		{
+			Name = "IconPicker",
+			Details = "Modern picker control with icon and customizable border.",
+			Command = new Command(() => Shell.Current.Navigation.PushAsync(new IconPickerPage()))
+		},
+		new UiToolkitItem
+		{
+			Name = "SegmentedButton",
+			Details = "Segmented button control providing concise way to select an option, switch between views...",
+			Command = new Command(() => Shell.Current.Navigation.PushAsync(new SegmentedButtonPage()))
+		}
+	];
+
+	private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
 	{
-		InitializeComponent();
-		Person1 = new Person("John", "Doe");
-		Person2 = new Person("Mickael", "Check");
-	}
-
-	public Person Person1 { get; set; }
-
-	public Person Person2 { get; set; }
-
-	public Func<Person, bool> ConditionAsFunction = (s) => s.FirstName == "John" && s.LastName == "Doe";
-
-	public bool Condition { get; set; } = true;
-
-	public Status Status { get; set; } = Status.Status1;
-
-	public string[] Items => ["item 1", "item 2"];
-
-	private void Button_Clicked(object sender, EventArgs e)
-	{
-		Condition = !Condition;
-		OnPropertyChanged(nameof(Condition));
+		var item = (UiToolkitItem)collection.SelectedItem;
+		if (item == null) return;
+		item.Command.Execute(null);
 	}
 }
 
-public enum Status
+public class UiToolkitItem
 {
-	Status1,
-	Status2
-}
+	public string Name { get; set; } = null!;
 
-public class Person(string firstName, string lastName)
-{
-	public string FirstName { get; set; } = firstName;
+	public string Details { get; set; } = null!;
 
-	public string LastName { get; set; } = lastName;
+	public ICommand Command { get; set; } = null!;
 }
 
