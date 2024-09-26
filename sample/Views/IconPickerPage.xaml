@@ -17,6 +17,15 @@
         </x:Array>
     </ContentPage.Resources>
     <VerticalStackLayout Padding="20, 32" Spacing="20">
+        <Label Text="Basic Icon Picker:" HorizontalOptions="Center"/>
+        <uikit:IconPicker MaximumWidthRequest="200"
+            Source="{FontImage FontFamily='MaterialIconsRound', Glyph={StaticResource IconMD_Expand_more}, Color={StaticResource DarkGray}}" 
+            TextColor="{StaticResource DarkGray}" TitleColor="{StaticResource DarkGray}"
+            HorizontalTextAlignment="Center" Title="Select a monkey"
+            StrokeThickness="2" Stroke="{StaticResource DarkGray}"
+            ItemsSource="{StaticResource array}">
+        </uikit:IconPicker>
+        
         <Label Text="Picker with rounded corners:" HorizontalOptions="Center"/>
         <uikit:IconPicker MaximumWidthRequest="200"
             Source="{FontImage FontFamily='MaterialIconsRound', Glyph={StaticResource IconMD_Expand_more}, Color={StaticResource DarkGray}}" 

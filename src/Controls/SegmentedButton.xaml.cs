@@ -2,6 +2,7 @@ using Maui.BindableProperty.Generator.Core;
 
 namespace UiToolkit.Maui.Controls;
 
+#pragma warning disable IDE0052
 public partial class SegmentedButton : ContentView
 {
 	[AutoBindable]
