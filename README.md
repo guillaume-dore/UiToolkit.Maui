@@ -37,10 +37,10 @@ xmlns:uikit="https://schemas.gd.com/dotnet/2024/maui"
 ## Controls
 
 Name|Android|iOS|Windows|MacOS|Tizen|
-:---------------------------:|:---:|:---:|:---:|:---:|
-[ConditionalView](#conditionalview)|✅|✅|✅|✅|✅
-[IconPicker](#iconpicker)          |✅|❌*|❌|❌|❌
-[SegmentedButton](#segmentedbutton)|✅|❌*|❌|❌|❌
+:---------------------------:|:---:|:---:|:---:|:---:|:---:|
+[ConditionalView](#conditionalview)|✅|✅|✅|✅|✅|
+[IconPicker](#iconpicker)          |✅|❌*|❌|❌|❌|
+[SegmentedButton](#segmentedbutton)|✅|❌*|❌|❌|❌|
 
 \* Implemented but currently not tested.
 
