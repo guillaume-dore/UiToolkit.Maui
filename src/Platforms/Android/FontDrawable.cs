@@ -41,7 +41,7 @@ internal class FontDrawable : Drawable
 		this.paint.GetTextBounds(this.text, 0, 1, textBounds);
 		var textHeight = textBounds.Height();
 		var textBottom = this.Bounds.Top + (this.paint.TextSize - textHeight) / 2f + textHeight - textBounds.Bottom;
-		canvas.DrawText(this.text, this.Bounds.Right - this.Bounds.Right / 15, textBottom, this.paint);
+		canvas.DrawText(this.text, this.Bounds.Right - this.Bounds.Right / 10, textBottom, this.paint);
 	}
 
 	public override bool SetState(int[] stateSet)
