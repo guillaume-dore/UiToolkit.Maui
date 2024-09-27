@@ -83,6 +83,19 @@ Name          |  Type | Default value | Description |
 ```
 
 ### IconPicker
+<p align="center"><img src="img/Picker.png"/></p>
+`IconPicker` control inherit from `Picker` base control.
+
+#### Properties
+Name          |  Type | Default value | Description |
+-------------------------|:-------------------------:|:---:|----|
+`Source` | `ImageSource` | `null` | Define the source image icon. | 
+`StrokeThickness` | `double` | `1.0` | Stroke size of the control.|
+`Stroke` | `Color` | `null` | Stroke `Color` of the control.|
+`CornerRadius` | `float` | `0` | Radius of the border corners. |
+
+#### Usage
+
 ```xml
 <uikit:IconPicker 
 	Source="{FontImage FontFamily='MaterialIconsRound', Glyph={StaticResource IconMD_Expand_more}, Size=1, Color={StaticResource DarkGray}}" 
@@ -94,6 +107,23 @@ Name          |  Type | Default value | Description |
 ```
 
 ### SegmentedButton
+<p align="center"><img src="img/SegmentedButton1.png"/></p>
+The `SegmentedButton` control inherit from `ContentView`.
+
+#### Properties
+Name          |  Type | Default value | Description |
+-------------------------|:-------------------------:|:---:|----|
+`FontFamily` | `ImageSource` | `null` | Define the source image icon. | 
+`IsEnabled` | `double` | `1.0` | Stroke size of the control.|
+`Stroke` | `Color` | `null` | Stroke `Color` of the control.|
+`StrokeThickness` | `float` | `0` | Radius of the border corners. |
+`SelectedColor` | `Color` | `0` | Radius of the border corners. |
+`SelectedBackground` | `Color` | `0` | Radius of the border corners. |
+`UnselectedColor` | `Color` | `0` | Radius of the border corners. |
+`UnselectedBackground` | `Color` | `0` | Radius of the border corners. |
+`SegmentItems` | `string[]` | `0` | Radius of the border corners. |
+`SelectedItem` | `string` | `0` | Radius of the border corners. |
+
 ```xml
 <uikit:SegmentedButton 
 	HeightRequest="40" WidthRequest="200"
