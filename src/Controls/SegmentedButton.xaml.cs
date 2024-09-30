@@ -2,9 +2,25 @@ using Maui.BindableProperty.Generator.Core;
 
 namespace UiToolkit.Maui.Controls;
 
+public enum SegmentedButtonStyle
+{
+	Outline, Filled
+}
+
+public enum SegmentedSelectionMode
+{
+	Single, Multiple
+}
+
 #pragma warning disable IDE0052
 public partial class SegmentedButton : ContentView
 {
+	[AutoBindable(DefaultValue = "SegmentedButtonStyle.Outline")]
+	private readonly SegmentedButtonStyle _type;
+
+	[AutoBindable(DefaultValue = "SegmentedSelectionMode.Single")]
+	private readonly SegmentedSelectionMode _selectionMode;
+
 	[AutoBindable]
 	private readonly string? _fontFamily;
 
