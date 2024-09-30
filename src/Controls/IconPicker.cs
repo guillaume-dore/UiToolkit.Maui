@@ -1,4 +1,3 @@
-
 using Maui.BindableProperty.Generator.Core;
 
 namespace UiToolkit.Maui.Controls;
