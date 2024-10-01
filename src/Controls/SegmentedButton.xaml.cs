@@ -1,4 +1,5 @@
 using Maui.BindableProperty.Generator.Core;
+using Microsoft.Maui.Layouts;
 using UiToolkit.Maui.Models;
 
 namespace UiToolkit.Maui.Controls;
@@ -41,6 +42,8 @@ public partial class SegmentedButton : Border
 	{
 		InitializeComponent();
 	}
+
+	public FlexBasis GetBasis { get => new(1f / ItemsSource.Count(), isRelative: true); }
 
 	public string GroupName { get; } = Guid.NewGuid().ToString();
 

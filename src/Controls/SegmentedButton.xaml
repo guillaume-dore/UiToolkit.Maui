@@ -11,7 +11,7 @@
             Wrap="NoWrap">
         <BindableLayout.ItemTemplate>
             <DataTemplate  x:DataType="{x:Type models:SegmentedItem}">
-                <RadioButton FlexLayout.Basis="50%" Content="{Binding Text}" Value="{Binding .}" IsEnabled="{Binding IsEnabled, Source={x:Reference this}}">
+                <RadioButton FlexLayout.Basis="{Binding GetBasis, Source={x:Reference this}}" Content="{Binding Text}" Value="{Binding .}" IsEnabled="{Binding IsEnabled, Source={x:Reference this}}">
                     <RadioButton.ControlTemplate>
                         <ControlTemplate>
                             <Grid Padding="0">
