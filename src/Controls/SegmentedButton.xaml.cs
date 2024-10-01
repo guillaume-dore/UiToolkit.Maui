@@ -1,37 +1,16 @@
 using Maui.BindableProperty.Generator.Core;
+using UiToolkit.Maui.Models;
 
 namespace UiToolkit.Maui.Controls;
 
-public enum SegmentedButtonStyle
+public partial class SegmentedButton : Border
 {
-	Outline, Filled
-}
-
-public enum SegmentedSelectionMode
-{
-	Single, Multiple
-}
-
 #pragma warning disable IDE0052
-public partial class SegmentedButton : ContentView
-{
-	[AutoBindable(DefaultValue = "SegmentedButtonStyle.Outline")]
-	private readonly SegmentedButtonStyle _type;
-
-	[AutoBindable(DefaultValue = "SegmentedSelectionMode.Single")]
-	private readonly SegmentedSelectionMode _selectionMode;
-
 	[AutoBindable]
 	private readonly string? _fontFamily;
 
 	[AutoBindable(DefaultValue = "true")]
 	private readonly bool _isEnabled;
-
-	[AutoBindable]
-	private readonly Brush? _stroke;
-
-	[AutoBindable]
-	private readonly double _strokeThickness;
 
 	[AutoBindable]
 	private readonly Color? _selectedColor;
@@ -46,10 +25,17 @@ public partial class SegmentedButton : ContentView
 	private readonly Color? _unselectedBackground;
 
 	[AutoBindable]
-	private readonly string[]? _segmentItems;
+	private readonly ImageSource? _selectedIcon;
 
-	[AutoBindable(DefaultBindingMode = "TwoWay")]
-	private readonly string? _selectedItem;
+	[AutoBindable]
+	private readonly ImageSource? _unselectedIcon;
+
+	[AutoBindable(ValidateValue = nameof(IsSourceValid))]
+	private readonly IEnumerable<SegmentedItem> _itemsSource = null!;
+
+	[AutoBindable(DefaultBindingMode = nameof(BindingMode.TwoWay))]
+	private readonly SegmentedItem? _selectedItem;
+#pragma warning restore IDE0052
 
 	public SegmentedButton()
 	{
@@ -58,6 +44,13 @@ public partial class SegmentedButton : ContentView
 
 	public string GroupName { get; } = Guid.NewGuid().ToString();
 
+	private static bool IsSourceValid(BindableObject _, object value)
+		=> value is IEnumerable<SegmentedItem> items && items.Any();
+
 	private void SegmentItem_Clicked(object sender, EventArgs e)
-		=> SelectedItem = ((Button)sender).Text;
+	{
+		Button obj = (Button)sender;
+		RadioButton radio = (RadioButton)obj.Parent.Parent;
+		SelectedItem = (SegmentedItem)radio.Value;
+	}
 }

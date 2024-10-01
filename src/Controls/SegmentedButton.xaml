@@ -1,55 +1,54 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="UiToolkit.Maui.Controls.SegmentedButton"
-             x:Name="this">
-    <Border 
-        Stroke="{Binding Source={x:Reference this}, Path=Stroke}"
-        StrokeThickness="{Binding Source={x:Reference this}, Path=StrokeThickness}"
-        StrokeShape="RoundRectangle 20,20,20,20">
-        <FlexLayout 
-            BindableLayout.ItemsSource="{Binding Source={x:Reference this}, Path=SegmentItems}" 
-            RadioButtonGroup.SelectedValue="{Binding Source={x:Reference this}, Path=SelectedItem}"
-            RadioButtonGroup.GroupName="{Binding Source={x:Reference this}, Path=GroupName}"
+<Border xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:models="clr-namespace:UiToolkit.Maui.Models"
+        x:Class="UiToolkit.Maui.Controls.SegmentedButton"
+        x:Name="this">
+    <FlexLayout 
+            BindableLayout.ItemsSource="{Binding ItemsSource, Source={x:Reference this}}" 
+            RadioButtonGroup.SelectedValue="{Binding SelectedItem, Source={x:Reference this}}"
+            RadioButtonGroup.GroupName="{Binding GroupName, Source={x:Reference this}}"
             Wrap="NoWrap">
-            <BindableLayout.ItemTemplate>
-                <DataTemplate  x:DataType="{x:Type x:String}">
-                    <RadioButton FlexLayout.Basis="50%" Content="{Binding .}" Value="{Binding .}" IsEnabled="{Binding Source={x:Reference this}, Path=IsEnabled}">
-                        <RadioButton.ControlTemplate>
-                            <ControlTemplate>
-                                <Grid Padding="0">
-                                    <VisualStateManager.VisualStateGroups>
-                                        <VisualStateGroupList>
-                                            <VisualStateGroup x:Name="CheckedStates">
-                                                <VisualState x:Name="Checked">
-                                                    <VisualState.Setters>
-                                                        <Setter TargetName="SegmentItem" Property="Button.TextColor" Value="{Binding Source={x:Reference this}, Path=SelectedColor}"/>
-                                                        <Setter TargetName="SegmentItem" Property="Button.BackgroundColor" Value="{Binding Source={x:Reference this}, Path=SelectedBackground}"/>
-                                                    </VisualState.Setters>
-                                                </VisualState>
-                                                <VisualState x:Name="Unchecked">
-                                                    <VisualState.Setters>
-                                                        <Setter TargetName="SegmentItem" Property="Button.TextColor" Value="{Binding Source={x:Reference this}, Path=UnselectedColor}" />
-                                                        <Setter TargetName="SegmentItem" Property="Button.BackgroundColor" Value="{Binding Source={x:Reference this}, Path=UnselectedBackground}" />
-                                                    </VisualState.Setters>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                        </VisualStateGroupList>
-                                    </VisualStateManager.VisualStateGroups>
-                                    <Button x:Name="SegmentItem"
-                                            Text="{TemplateBinding Content}"
-                                            FontFamily="{Binding Source={x:Reference this}, Path=FontFamily}"
-                                            HorizontalOptions="Fill"
-                                            CornerRadius="0"
-                                            FontSize="12"
-                                            Clicked="SegmentItem_Clicked">
-                                    </Button>
-                                </Grid>
-                            </ControlTemplate>
-                        </RadioButton.ControlTemplate>
-                    </RadioButton>
-                </DataTemplate>
-            </BindableLayout.ItemTemplate>
-        </FlexLayout>
-    </Border>
-</ContentView>
+        <BindableLayout.ItemTemplate>
+            <DataTemplate  x:DataType="{x:Type models:SegmentedItem}">
+                <RadioButton FlexLayout.Basis="50%" Content="{Binding Text}" Value="{Binding .}" IsEnabled="{Binding IsEnabled, Source={x:Reference this}}">
+                    <RadioButton.ControlTemplate>
+                        <ControlTemplate>
+                            <Grid Padding="0">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroupList>
+                                        <VisualStateGroup x:Name="CheckedStates">
+                                            <VisualState x:Name="Checked">
+                                                <VisualState.Setters>
+                                                    <Setter TargetName="SegmentItem" Property="Button.ImageSource" Value="{Binding SelectedIcon, Source={x:Reference this}}"/>
+                                                    <Setter TargetName="SegmentItem" Property="Button.TextColor" Value="{Binding SelectedColor, Source={x:Reference this}}"/>
+                                                    <Setter TargetName="SegmentItem" Property="Button.BackgroundColor" Value="{Binding SelectedBackground, Source={x:Reference this}}"/>
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Unchecked">
+                                                <VisualState.Setters>
+                                                    <Setter TargetName="SegmentItem" Property="Button.ImageSource" Value="{Binding UnselectedIcon, Source={x:Reference this}}"/>
+                                                    <Setter TargetName="SegmentItem" Property="Button.TextColor" Value="{Binding UnselectedColor, Source={x:Reference this}}" />
+                                                    <Setter TargetName="SegmentItem" Property="Button.BackgroundColor" Value="{Binding UnselectedBackground, Source={x:Reference this}}" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateGroupList>
+                                </VisualStateManager.VisualStateGroups>
+                                <Button 
+                                    x:Name="SegmentItem"
+                                    Text="{TemplateBinding Content}"
+                                    FontFamily="{Binding Source={x:Reference this}, Path=FontFamily}"
+                                    HorizontalOptions="Fill"
+                                    CornerRadius="0"
+                                    FontSize="12"
+                                    Clicked="SegmentItem_Clicked"
+                                    />
+                            </Grid>
+                        </ControlTemplate>
+                    </RadioButton.ControlTemplate>
+                </RadioButton>
+            </DataTemplate>
+        </BindableLayout.ItemTemplate>
+    </FlexLayout>
+</Border>

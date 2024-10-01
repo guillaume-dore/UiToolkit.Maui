@@ -5,18 +5,53 @@
              x:Class="UiToolkit.Maui.Sample.Views.SegmentedButtonPage"
              Title="SegmentedButton Demo"
              x:Name="this">
-    <ContentPage.Resources>
-        <x:Array Type="{x:Type x:String}" x:Key="array">
-            <x:String>Option 1</x:String>
-            <x:String>Option 2</x:String>
-        </x:Array>
-    </ContentPage.Resources>
     <VerticalStackLayout Padding="20, 32" Spacing="20">
         <Label Text="Segmented button with 2 options:" HorizontalOptions="Center"/>
         <uikit:SegmentedButton 
             HeightRequest="40" WidthRequest="200"
+            StrokeShape="RoundRectangle 20,20,20,20"
             Stroke="{AppThemeBinding Light={StaticResource Gray600}, Dark='White'}" StrokeThickness="1" 
-            SegmentItems="{StaticResource array}"
+            ItemsSource="{Binding Items, Source={x:Reference this}}"
+            SelectedItem="{Binding SelectedItem, Source={x:Reference this}}"
+            SelectedColor="{AppThemeBinding Light='White', Dark={StaticResource Gray600}}"
+            SelectedBackground="{AppThemeBinding Light={StaticResource Gray600}, Dark='White'}"
+            UnselectedColor="{AppThemeBinding Light={StaticResource Gray600}, Dark='White'}"
+            UnselectedBackground="{AppThemeBinding Light='White', Dark={StaticResource Gray600}}"/>
+
+        <Label Text="Segmented icon button:" HorizontalOptions="Center"/>
+        <uikit:SegmentedButton 
+            HeightRequest="40" WidthRequest="250"
+            StrokeShape="RoundRectangle 20,20,20,20"
+            Stroke="{AppThemeBinding Light={StaticResource Gray600}, Dark='White'}" StrokeThickness="1" 
+            ItemsSource="{Binding ItemsWithIcons, Source={x:Reference this}}"
+            SelectedItem="{Binding SelectedItemWithIcon, Source={x:Reference this}}"
+            SelectedColor="{AppThemeBinding Light='White', Dark={StaticResource Gray600}}"
+            SelectedBackground="{AppThemeBinding Light={StaticResource Gray600}, Dark='White'}"
+            SelectedIcon="{FontImageSource Glyph={StaticResource IconMD_Check}, FontFamily='MaterialIconsRound', Color={AppThemeBinding Light='White', Dark={StaticResource Gray600}}}"
+            UnselectedColor="{AppThemeBinding Light={StaticResource Gray600}, Dark='White'}"
+            UnselectedBackground="{AppThemeBinding Light='White', Dark={StaticResource Gray600}}"
+            UnselectedIcon="{FontImageSource Glyph={StaticResource IconMD_Close}, FontFamily='MaterialIconsRound', Color={AppThemeBinding Light={StaticResource Gray600}, Dark='White'}}"/>
+
+        <Label Text="Segmented icon button with icon only on selected item:" HorizontalOptions="Center"/>
+        <uikit:SegmentedButton 
+            HeightRequest="40" WidthRequest="250"
+            StrokeShape="RoundRectangle 20,20,20,20"
+            Stroke="{AppThemeBinding Light={StaticResource Gray600}, Dark='White'}" StrokeThickness="1" 
+            ItemsSource="{Binding ItemsWithIcons, Source={x:Reference this}}"
+            SelectedItem="{Binding SelectedItemWithIcon, Source={x:Reference this}}"
+            SelectedColor="{AppThemeBinding Light='White', Dark={StaticResource Gray600}}"
+            SelectedBackground="{AppThemeBinding Light={StaticResource Gray600}, Dark='White'}"
+            SelectedIcon="{FontImageSource Glyph={StaticResource IconMD_Check}, FontFamily='MaterialIconsRound', Color={AppThemeBinding Light='White', Dark={StaticResource Gray600}}}"
+            UnselectedColor="{AppThemeBinding Light={StaticResource Gray600}, Dark='White'}"
+            UnselectedBackground="{AppThemeBinding Light='White', Dark={StaticResource Gray600}}"/>
+
+        <Label Text="Segmented button with 4 options:" HorizontalOptions="Center"/>
+        <uikit:SegmentedButton 
+            HeightRequest="40"
+            StrokeShape="RoundRectangle 20,20,20,20"
+            Stroke="{AppThemeBinding Light={StaticResource Gray600}, Dark='White'}" StrokeThickness="1" 
+            ItemsSource="{Binding MultipleItems, Source={x:Reference this}}"
+            SelectedItem="{Binding SelectedMultipleItem, Source={x:Reference this}}"
             SelectedColor="{AppThemeBinding Light='White', Dark={StaticResource Gray600}}"
             SelectedBackground="{AppThemeBinding Light={StaticResource Gray600}, Dark='White'}"
             UnselectedColor="{AppThemeBinding Light={StaticResource Gray600}, Dark='White'}"
