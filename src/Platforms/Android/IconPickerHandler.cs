@@ -55,9 +55,7 @@ public partial class IconPickerHandler
 	protected override void ConnectHandler(MauiPicker platformView)
 	{
 		base.ConnectHandler(platformView);
-
 		IconPicker element = (IconPicker)VirtualView;
-
 		GradientDrawable borderDrawable = new GradientDrawable();
 		borderDrawable.SetShape(ShapeType.Rectangle);
 		borderDrawable.SetPadding(10, 10, 10, 10);
@@ -74,8 +72,12 @@ public partial class IconPickerHandler
 	private async Task<Drawable> GetImageSourceAsDrawable(ImageSource source)
 	{
 		Drawable drawable;
-		if (source is FontImageSource fontSource)
-			drawable = new FontDrawable(Context, fontSource.Glyph, fontSource.Color.ToPlatform(), Convert.ToInt32(fontSource.Size), "MaterialIconsRound-Regular.otf"); // TODO: add font family and recover filename from font family
+		if (source is IFontImageSource fontSource)
+		{
+			IFontManager? fontManager = (IFontManager?)this.MauiContext?.Services.GetService<IFontManager>(); // get font manager service to handle font by name
+			fontManager.GetTypeface(fontSource.Font);
+			drawable = new FontDrawable(Context, fontSource.Glyph, fontSource.Color.ToPlatform(), Convert.ToInt32(((FontImageSource)fontSource).Size), "MaterialIconsRound-Regular.otf"); // TODO: add font family and recover filename from font family
+		}
 		else
 		{
 			var renderer = new StreamImagesourceHandler();
