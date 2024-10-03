@@ -4,69 +4,43 @@ using Android.Graphics.Drawables;
 using Android.Views;
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 using Microsoft.Maui.Platform;
-using System.Diagnostics;
 using UiToolkit.Maui.Controls;
 
 namespace UiToolkit.Maui.Handlers;
 
 public partial class IconPickerHandler
 {
-	public static void MapSourceChanged(IconPickerHandler handler, IconPicker view) { Debug.WriteLine(nameof(MapSourceChanged)); }
-
-	public static void MapStrokeThicknessChanged(IconPickerHandler handler, IconPicker view)
-	{
-		Debug.WriteLine(nameof(MapStrokeThicknessChanged));
-		//if (handler.PlatformView.Background is LayerDrawable backgroundDrawable)
-		//{
-		//	GradientDrawable? borderDrawable = (GradientDrawable?)backgroundDrawable.FindDrawableByLayerId(backgroundDrawable.GetId(0));
-		//	if (borderDrawable != null)
-		//	{
-		//		borderDrawable.Thickness = Convert.ToInt32(view.StrokeThickness);
-		//	}
-		//}
-	}
-
-	public static void MapStrokeChanged(IconPickerHandler handler, IconPicker view)
-	{
-		//if (handler.PlatformView.Background is LayerDrawable backgroundDrawable)
-		//{
-		//	GradientDrawable? borderDrawable = (GradientDrawable?)backgroundDrawable.FindDrawableByLayerId(backgroundDrawable.GetId(0));
-		//	if (borderDrawable != null)
-		//	{
-		//		borderDrawable.SetStroke(borderDrawable.Thickness, view.Stroke?.ToPlatform() ?? Android.Graphics.Color.Black);
-		//	}
-		//}
-		Debug.WriteLine(nameof(MapStrokeChanged));
-	}
-
-	public static void MapCornerRadiusChanged(IconPickerHandler handler, IconPicker view)
-	{
-		//if (handler.PlatformView.Background is LayerDrawable backgroundDrawable)
-		//{
-		//	GradientDrawable? borderDrawable = (GradientDrawable?)backgroundDrawable.FindDrawableByLayerId(backgroundDrawable.GetId(0));
-		//	if (borderDrawable != null)
-		//	{
-		//		borderDrawable.SetCornerRadius(view.CornerRadius);
-		//	}
-		//}
-		Debug.WriteLine(nameof(MapCornerRadiusChanged));
-	}
+	private new IconPicker VirtualView => (IconPicker?)base.VirtualView ?? throw new InvalidOperationException($"VirtualView cannot be null here");
 
 	protected override void ConnectHandler(MauiPicker platformView)
 	{
 		base.ConnectHandler(platformView);
-		IconPicker element = (IconPicker)VirtualView;
+		VirtualView.Loaded += OnLoaded;
+	}
+
+	protected override void DisconnectHandler(MauiPicker platformView)
+	{
+		VirtualView.Loaded -= OnLoaded;
+		base.DisconnectHandler(platformView);
+	}
+
+	private void OnLoaded(object? sender, EventArgs e)
+	{
+		LayerDrawable layerDrawable = new([GetBorderDrawable(), GetImageSourceAsDrawable(VirtualView.Source).Result]);
+		layerDrawable.SetLayerInset(0, 20, 0, 0, 0);
+		PlatformView.Background = layerDrawable;
+	}
+
+	private GradientDrawable GetBorderDrawable()
+	{
+		IconPicker element = VirtualView;
 		GradientDrawable borderDrawable = new GradientDrawable();
 		borderDrawable.SetShape(ShapeType.Rectangle);
 		borderDrawable.SetPadding(10, 10, 10, 10);
 		borderDrawable.SetCornerRadius(element.CornerRadius);
 		borderDrawable.SetColor(ColorStateList.ValueOf(element.BackgroundColor?.ToPlatform() ?? Android.Graphics.Color.Transparent));
 		borderDrawable.SetStroke(Convert.ToInt32(element.StrokeThickness), element.Stroke?.ToPlatform() ?? Android.Graphics.Color.Black);
-
-		LayerDrawable layerDrawable = new([borderDrawable, GetImageSourceAsDrawable(element.Source).Result]);
-		layerDrawable.SetLayerInset(0, 20, 0, 0, 0);
-
-		platformView.Background = layerDrawable;
+		return borderDrawable;
 	}
 
 	private async Task<Drawable> GetImageSourceAsDrawable(ImageSource source)
