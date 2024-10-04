@@ -9,11 +9,9 @@ public static class MauiAppBuilderExtensions
 {
 	public static MauiAppBuilder UseUiToolkit(this MauiAppBuilder builder)
 	{
-		//builder.UseMauiCompatibility();
 		return builder.ConfigureMauiHandlers(cfg =>
 		{
 			cfg.AddHandler<IconPicker, IconPickerHandler>();
-			//cfg.AddCompatibilityRenderer<IconPicker, IconPickerRenderer>();
 		});
 	}
 }

@@ -8,73 +8,68 @@ namespace UiToolkit.Maui;
 
 internal class FontDrawable : Drawable
 {
-	private int alpha = 255;
-	private int size;
-	private string text;
-	private readonly TextPaint paint = new TextPaint();
+	private int _alpha = 255;
 
-	public override int IntrinsicWidth => this.size;
+	private readonly int _size;
 
-	public override int IntrinsicHeight => this.size;
+	private readonly string _text;
+
+	private readonly TextPaint _paint = new();
+
+	internal FontDrawable(Context context, string text, Android.Graphics.Color iconColor, int iconSizeDP, Typeface? font)
+	{
+		this._text = text;
+
+		this._paint.SetTypeface(font ?? Typeface.CreateFromAsset(context.Assets, "ionicons.ttf"));
+		this._paint.SetStyle(Android.Graphics.Paint.Style.Fill);
+		this._paint.TextAlign = Android.Graphics.Paint.Align.Center;
+		this._paint.Color = iconColor;
+		this._paint.AntiAlias = true;
+		this._size = GetPX(context, iconSizeDP);
+		this.SetBounds(0, 0, this._size, this._size);
+	}
+
+	public override int IntrinsicWidth => this._size;
+
+	public override int IntrinsicHeight => this._size;
 
 	public override bool IsStateful => true;
 
-	public override int Opacity => this.alpha;
-
-	public FontDrawable(Context context, string text, Android.Graphics.Color iconColor, int iconSizeDP, Typeface? font)
-	{
-		this.text = text;
-
-		this.paint.SetTypeface(font ?? Typeface.CreateFromAsset(context.Assets, "ionicons.ttf"));
-		this.paint.SetStyle(Android.Graphics.Paint.Style.Fill);
-		this.paint.TextAlign = Android.Graphics.Paint.Align.Center;
-		this.paint.Color = iconColor;
-		this.paint.AntiAlias = true;
-		this.size = GetPX(context, iconSizeDP);
-		this.SetBounds(0, 0, this.size, this.size);
-	}
+	public override int Opacity => this._alpha;
 
 	public override void Draw(Canvas canvas)
 	{
-		this.paint.TextSize = this.Bounds.Height();
+		this._paint.TextSize = this.Bounds.Height();
 		var textBounds = new Android.Graphics.Rect();
-		this.paint.GetTextBounds(this.text, 0, 1, textBounds);
+		this._paint.GetTextBounds(this._text, 0, 1, textBounds);
 		var textHeight = textBounds.Height();
-		var textBottom = this.Bounds.Top + (this.paint.TextSize - textHeight) / 2f + textHeight - textBounds.Bottom;
-		canvas.DrawText(this.text, this.Bounds.Right - this.Bounds.Right / 10, textBottom, this.paint);
+		var textBottom = this.Bounds.Top + (this._paint.TextSize - textHeight) / 2f + textHeight - textBounds.Bottom;
+		canvas.DrawText(this._text, this.Bounds.Right - this.Bounds.Right / 10, textBottom, this._paint);
 	}
 
 	public override bool SetState(int[] stateSet)
 	{
-		var oldValue = paint.Alpha;
-		var newValue = stateSet.Any(s => s == global::Android.Resource.Attribute.StateEnabled) ? this.alpha : this.alpha / 2;
-		paint.Alpha = newValue;
+		var oldValue = _paint.Alpha;
+		var newValue = stateSet.Any(s => s == global::Android.Resource.Attribute.StateEnabled) ? this._alpha : this._alpha / 2;
+		_paint.Alpha = newValue;
 		return oldValue != newValue;
 	}
 
 	private static int GetPX(Context context, int sizeDP)
-	{
-		return (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, sizeDP, context.Resources.DisplayMetrics);
-	}
+		=> (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, sizeDP, context.Resources?.DisplayMetrics);
 
 	private static bool IsEnabled(int[] stateSet)
-	{
-		return stateSet.Any(s => s == global::Android.Resource.Attribute.StateEnabled);
-	}
+		=> stateSet.Any(s => s == global::Android.Resource.Attribute.StateEnabled);
 
 	public override void SetAlpha(int alpha)
 	{
-		this.alpha = alpha;
-		this.paint.Alpha = alpha;
+		this._alpha = alpha;
+		this._paint.Alpha = alpha;
 	}
 
-	public override void SetColorFilter(ColorFilter colorFilter)
-	{
-		this.paint.SetColorFilter(colorFilter);
-	}
+	public override void SetColorFilter(ColorFilter? colorFilter)
+		=> this._paint.SetColorFilter(colorFilter);
 
 	public override void ClearColorFilter()
-	{
-		this.paint.SetColorFilter(null);
-	}
+		=> this._paint.SetColorFilter(null);
 }

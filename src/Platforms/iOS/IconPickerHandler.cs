@@ -1,6 +1,5 @@
 ﻿using Microsoft.Maui.Platform;
 using UIKit;
-using UiToolkit.Maui.Controls;
 
 namespace UiToolkit.Maui.Handlers;
 
@@ -20,6 +19,11 @@ public partial class IconPickerHandler
 
 	private void OnLoaded(object? sender, EventArgs e)
 	{
+		//PlatformView.BorderStyle = UITextBorderStyle.RoundedRect;
+		//PlatformView.Layer.CornerRadius = 50;
+		//PlatformView.BackgroundColor = UIKit.UIColor.Clear;
+		//PlatformView.Layer.BorderWidth = 0;
+		//PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
 		//PlatformView.BackgroundColor = element.BackgroundColor?.ToPlatform() ?? UIColor.Clear;
 		//PlatformView.Layer.BorderWidth = new(element.StrokeThickness);
 		//PlatformView.Layer.BorderColor = element.Stroke?.ToPlatform()?.CGColor ?? UIColor.Black.CGColor;
@@ -34,10 +38,27 @@ public partial class IconPickerHandler
 		//PlatformView.Layer.MasksToBounds = true;
 		//PlatformView.LayoutMargins = new UIEdgeInsets(10, 10, 10, 10);
 
-		IconPicker element = VirtualView;
 
+
+		//PlatformView.BackgroundColor = UIKit.UIColor.Clear;
+		//PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
+
+		SetBorderLayer();
+		PlatformView.RightViewMode = UITextFieldViewMode.Always;
+		PlatformView.RightView = GetImageView();
+	}
+
+	private void SetBorderLayer()
+	{
+		//PlatformView.BackgroundColor = VirtualView.Stroke?.ToPlatform();
+		PlatformView.Layer.BorderColor = UIKit.UIColor.Green.CGColor;
+		PlatformView.Layer.MasksToBounds = true;
+	}
+
+	private UIImageView GetImageView()
+	{
 		UIImage icon;
-		if (element.Source is IFontImageSource fontSource)
+		if (VirtualView.Source is IFontImageSource fontSource)
 		{
 			FontImageSource fontImageSource = (FontImageSource)fontSource as FontImageSource;
 			icon = ImageHelper.ImageFromFont(fontSource.Glyph, fontSource.Color.ToPlatform(), new CoreGraphics.CGSize(fontImageSource.Size, fontImageSource.Size), FontManager.GetFont(fontSource.Font));
@@ -46,7 +67,6 @@ public partial class IconPickerHandler
 		{
 			throw new NotImplementedException(); // Not yet implemented
 		}
-		PlatformView.RightViewMode = UITextFieldViewMode.Always;
-		PlatformView.RightView = new UIImageView(icon);
+		return new UIImageView(icon);
 	}
 }

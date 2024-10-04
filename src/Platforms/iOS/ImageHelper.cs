@@ -4,39 +4,37 @@ using UIKit;
 
 namespace UiToolkit.Maui;
 
-public static class ImageHelper
+internal static class ImageHelper
 {
-	[Obsolete("Not working from iOS 17.0")]
-	public static UIImage ImageFromFont(string text, UIColor iconColor, CGSize iconSize, UIFont font)
+	internal static UIImage ImageFromFont(string text, UIColor iconColor, CGSize iconSize, UIFont font)
 	{
-		UIGraphics.BeginImageContextWithOptions(iconSize, false, 0);
-
-		var textRect = new CGRect(CGPoint.Empty, iconSize);
-		var path = UIBezierPath.FromRect(textRect);
-		UIColor.Clear.SetFill();
-		path.Fill();
-
-		using (var label = new UILabel() { Text = text, Font = font })
+		var renderer = new UIGraphicsImageRenderer(iconSize, new UIGraphicsImageRendererFormat
 		{
+			Opaque = false,
+			Scale = 0
+		});
+
+		UIImage image = renderer.CreateImage((context) =>
+		{
+			var textRect = new CGRect(CGPoint.Empty, iconSize);
+			var path = UIBezierPath.FromRect(textRect);
+			UIColor.Clear.SetFill();
+			path.Fill();
+
+			using var label = new UILabel() { Text = text, Font = font };
 			GetFontSize(label, iconSize, 500, 5);
 			font = label.Font;
-		}
-		iconColor.SetFill();
-		using (var nativeString = new NSString(text))
-		{
+			iconColor.SetFill();
+
+			using var nativeString = new NSString(text);
 			nativeString.DrawString(textRect, new UIStringAttributes
 			{
 				Font = font,
 				ForegroundColor = iconColor,
 				BackgroundColor = UIColor.Clear,
-				ParagraphStyle = new NSMutableParagraphStyle
-				{
-					Alignment = UITextAlignment.Center
-				}
+				ParagraphStyle = new NSMutableParagraphStyle { Alignment = UITextAlignment.Center }
 			});
-		}
-		var image = UIGraphics.GetImageFromCurrentImageContext(); // TODO will be obsolete on ios 17
-		UIGraphics.EndImageContext(); // TODO will be obsolete on ios 17
+		});
 		return image;
 	}
 
@@ -58,9 +56,7 @@ public static class ImageHelper
 						);
 
 				if (textRect.Size.Height <= label.Frame.Height)
-				{
 					break;
-				}
 			}
 
 			fontSize -= 2;

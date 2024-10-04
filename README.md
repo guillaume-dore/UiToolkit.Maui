@@ -38,13 +38,14 @@ xmlns:uikit="https://schemas.gd.com/dotnet/2024/maui"
 
 Name|Android|iOS|Windows|MacOS|Tizen|
 :---------------------------:|:---:|:---:|:---:|:---:|:---:|
+**Supported Version** |Android 10 (API 29+)|iOS 11+|Win 10+|N/A|N/A|
 [ConditionalView](#conditionalview)|✅|✅|✅|✅|✅|
 [IconPicker](#iconpicker)          |✅|✅*|❌|❌|❌|
 [SegmentedButton](#segmentedbutton)|✅|✅|❌|❌|❌|
 
 \* Not all features of the control are available on this Platform.
 
-:x: Not implemented yet but planned in short term.
+:x: Not implemented for the moment.
 
 ### ConditionalView
 The `ConditionalView` control inherit from `ContentView`.
