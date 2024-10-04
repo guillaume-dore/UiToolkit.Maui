@@ -20,20 +20,27 @@ public partial class IconPickerHandler
 
 	private void OnLoaded(object? sender, EventArgs e)
 	{
+		//PlatformView.BackgroundColor = element.BackgroundColor?.ToPlatform() ?? UIColor.Clear;
+		//PlatformView.Layer.BorderWidth = new(element.StrokeThickness);
+		//PlatformView.Layer.BorderColor = element.Stroke?.ToPlatform()?.CGColor ?? UIColor.Black.CGColor;
+		//PlatformView.Layer.MasksToBounds = false;
+		//PlatformView.Layer.CornerRadius = element.CornerRadius;
+		//PlatformView.BorderStyle = UITextBorderStyle.None;
+		//PlatformView.BorderStyle = UITextBorderStyle.Line;
+		//PlatformView.BackgroundColor = element.Stroke?.ToPlatform();
+		//PlatformView.Layer.BorderWidth = 2;
+		//PlatformView.Layer.BorderColor = element.Stroke?.ToPlatform().CGColor;
+		//PlatformView.Layer.CornerRadius = element.CornerRadius;
+		//PlatformView.Layer.MasksToBounds = true;
+		//PlatformView.LayoutMargins = new UIEdgeInsets(10, 10, 10, 10);
+
 		IconPicker element = VirtualView;
-		PlatformView.BackgroundColor = element.BackgroundColor?.ToPlatform() ?? UIColor.Clear;
-		PlatformView.Layer.BorderWidth = new(element.StrokeThickness);
-		PlatformView.Layer.BorderColor = element.Stroke?.ToPlatform()?.CGColor ?? UIColor.Black.CGColor;
-		PlatformView.Layer.MasksToBounds = false;
-		PlatformView.Layer.CornerRadius = element.CornerRadius;
-		PlatformView.BorderStyle = UITextBorderStyle.None;
 
 		UIImage icon;
 		if (element.Source is IFontImageSource fontSource)
 		{
 			FontImageSource fontImageSource = (FontImageSource)fontSource as FontImageSource;
-			IFontManager fontManager = MauiContext?.Services.GetService<IFontManager>() ?? throw new InvalidOperationException($"IFontManager service cannot be null here");
-			icon = ImageHelper.ImageFromFont(fontSource.Glyph, fontSource.Color.ToPlatform(), new CoreGraphics.CGSize(fontImageSource.Size, fontImageSource.Size), fontManager.GetFont(fontSource.Font));
+			icon = ImageHelper.ImageFromFont(fontSource.Glyph, fontSource.Color.ToPlatform(), new CoreGraphics.CGSize(fontImageSource.Size, fontImageSource.Size), FontManager.GetFont(fontSource.Font));
 		}
 		else
 		{

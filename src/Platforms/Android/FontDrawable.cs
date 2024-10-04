@@ -21,11 +21,11 @@ internal class FontDrawable : Drawable
 
 	public override int Opacity => this.alpha;
 
-	public FontDrawable(Context context, string text, Android.Graphics.Color iconColor, int iconSizeDP, string font = "ionicons.ttf")
+	public FontDrawable(Context context, string text, Android.Graphics.Color iconColor, int iconSizeDP, Typeface? font)
 	{
 		this.text = text;
 
-		this.paint.SetTypeface(Typeface.CreateFromAsset(context.Assets, font));
+		this.paint.SetTypeface(font ?? Typeface.CreateFromAsset(context.Assets, "ionicons.ttf"));
 		this.paint.SetStyle(Android.Graphics.Paint.Style.Fill);
 		this.paint.TextAlign = Android.Graphics.Paint.Align.Center;
 		this.paint.Color = iconColor;

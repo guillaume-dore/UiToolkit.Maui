@@ -45,11 +45,7 @@ public partial class IconPickerHandler
 	{
 		Drawable drawable;
 		if (source is IFontImageSource fontSource)
-		{
-			IFontManager? fontManager = (IFontManager?)this.MauiContext?.Services.GetService<IFontManager>(); // get font manager service to handle font by name
-			fontManager.GetTypeface(fontSource.Font);
-			drawable = new FontDrawable(Context, fontSource.Glyph, fontSource.Color.ToPlatform(), Convert.ToInt32(((FontImageSource)fontSource).Size), "MaterialIconsRound-Regular.otf"); // TODO: add font family and recover filename from font family
-		}
+			drawable = new FontDrawable(Context, fontSource.Glyph, fontSource.Color.ToPlatform(), Convert.ToInt32(((FontImageSource)fontSource).Size), FontManager.GetTypeface(fontSource.Font));
 		else
 		{
 			var renderer = new StreamImagesourceHandler();
