@@ -39,10 +39,10 @@ xmlns:uikit="https://schemas.gd.com/dotnet/2024/maui"
 Name|Android|iOS|Windows|MacOS|Tizen|
 :---------------------------:|:---:|:---:|:---:|:---:|:---:|
 [ConditionalView](#conditionalview)|✅|✅|✅|✅|✅|
-[IconPicker](#iconpicker)          |⚠️|❌|❌|❌|❌|
-[SegmentedButton](#segmentedbutton)|⚠️|❌|❌|❌|❌|
+[IconPicker](#iconpicker)          |✅|✅*|❌|❌|❌|
+[SegmentedButton](#segmentedbutton)|✅|✅|❌|❌|❌|
 
-:warning: Currently in development.
+\* Not all features of the control are available on this Platform.
 
 :x: Not implemented yet but planned in short term.
 
@@ -86,15 +86,19 @@ Name          |  Type | Default value | Description |
 
 ### IconPicker
 <p align="center"><img src="img/Picker.png"/></p>
+
 `IconPicker` control inherit from `Picker` base control.
 
 #### Properties
+
 Name          |  Type | Default value | Description |
 -------------------------|:-------------------------:|:---:|----|
 `Source` | `ImageSource` | `null` | Define the source image icon. | 
 `StrokeThickness` | `double` | `1.0` | Stroke size of the control.|
 `Stroke` | `Color` | `null` | Stroke `Color` of the control.|
 `CornerRadius` | `float` | `0` | Radius of the border corners. |
+
+<span style="color: #FF0000"><b>Important:</b></span> Border personalization aren't supporter on iOS yet.
 
 #### Usage
 
@@ -116,15 +120,15 @@ The `SegmentedButton` control inherit from `ContentView`.
 Name          |  Type | Default value | Description |
 -------------------------|:-------------------------:|:---:|----|
 `FontFamily` | `ImageSource` | `null` | Define the source image icon. | 
-`IsEnabled` | `double` | `1.0` | Stroke size of the control.|
-`Stroke` | `Color` | `null` | Stroke `Color` of the control.|
-`StrokeThickness` | `float` | `0` | Radius of the border corners. |
-`SelectedColor` | `Color` | `0` | Radius of the border corners. |
-`SelectedBackground` | `Color` | `0` | Radius of the border corners. |
-`UnselectedColor` | `Color` | `0` | Radius of the border corners. |
-`UnselectedBackground` | `Color` | `0` | Radius of the border corners. |
-`SegmentItems` | `string[]` | `0` | Radius of the border corners. |
-`SelectedItem` | `string` | `0` | Radius of the border corners. |
+`IsEnabled` | `bool` | `true` | Define control state enable/disable.|
+`SelectedColor` | `Color` | `null` | Text color of the selected item. |
+`UnselectedColor` | `Color` | `null` | Text color of the unselected item(s). |
+`SelectedBackground` | `Color` | `null` | Background color of the selected item. |
+`UnselectedBackground` | `Color` | `null` | Background color of the unselected item(s). |
+`SelectedIcon` | `ImageSource` | `null` | Font icon to display on the selected item. |
+`UnselectedIcon` | `ImageSource` | `null` | Font icon to display on the unselected item(s). |
+`ItemsSource` | `IEnumerable<SegmentedItem>` | `Required` | List of segment items. |
+`SelectedItem` | `SegmentedItem` | `null` | `BindingMode.TwoWay` property binded to the selected item. |
 
 ```xml
 <uikit:SegmentedButton 
