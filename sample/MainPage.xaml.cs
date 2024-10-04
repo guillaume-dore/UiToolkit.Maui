@@ -34,6 +34,9 @@ public partial class MainPage : ContentPage
 		if (item == null) return;
 		item.Command.Execute(null);
 	}
+
+	private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
+		=> collection.SelectedItem = null;
 }
 
 public class UiToolkitItem
