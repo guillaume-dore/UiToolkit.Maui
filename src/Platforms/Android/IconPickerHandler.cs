@@ -10,8 +10,6 @@ namespace UiToolkit.Maui.Handlers;
 
 public partial class IconPickerHandler
 {
-	private new IconPicker VirtualView => (IconPicker?)base.VirtualView ?? throw new InvalidOperationException($"VirtualView cannot be null here");
-
 	protected override void ConnectHandler(MauiPicker platformView)
 	{
 		base.ConnectHandler(platformView);

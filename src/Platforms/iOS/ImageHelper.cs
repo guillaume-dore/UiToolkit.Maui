@@ -6,7 +6,8 @@ namespace UiToolkit.Maui;
 
 public static class ImageHelper
 {
-	public static UIImage ImageFromFont(string text, UIColor iconColor, CGSize iconSize, string fontName)
+	[Obsolete("Not working from iOS 17.0")]
+	public static UIImage ImageFromFont(string text, UIColor iconColor, CGSize iconSize, UIFont font)
 	{
 		UIGraphics.BeginImageContextWithOptions(iconSize, false, 0);
 
@@ -15,7 +16,6 @@ public static class ImageHelper
 		UIColor.Clear.SetFill();
 		path.Fill();
 
-		var font = UIFont.FromName(fontName, iconSize.Width);
 		using (var label = new UILabel() { Text = text, Font = font })
 		{
 			GetFontSize(label, iconSize, 500, 5);
@@ -35,8 +35,8 @@ public static class ImageHelper
 				}
 			});
 		}
-		var image = UIGraphics.GetImageFromCurrentImageContext();
-		UIGraphics.EndImageContext();
+		var image = UIGraphics.GetImageFromCurrentImageContext(); // TODO will be obsolete on ios 17
+		UIGraphics.EndImageContext(); // TODO will be obsolete on ios 17
 		return image;
 	}
 

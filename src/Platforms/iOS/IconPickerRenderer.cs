@@ -17,14 +17,14 @@ public class IconPickerRenderer : PickerRenderer
 		if (this.Control != null && this.Element != null && element.Source != null)
 		{
 			UIImage icon;
-			if (element.Source is FontImageSource font)
-				icon = ImageHelper.ImageFromFont(font.Glyph, UIColor.Black, new CoreGraphics.CGSize(font.Size, font.Size), "MaterialIconsRound");
-			else
-			{
-				throw new NotImplementedException();
-			}
-			Control.RightViewMode = UITextFieldViewMode.Always;
-			Control.RightView = new UIImageView(icon);
+			//if (element.Source is FontImageSource font)
+			//	icon = ImageHelper.ImageFromFont(font.Glyph, UIColor.Black, new CoreGraphics.CGSize(font.Size, font.Size), "MaterialIconsRound");
+			//else
+			//{
+			//	throw new NotImplementedException();
+			//}
+			//Control.RightViewMode = UITextFieldViewMode.Always;
+			//Control.RightView = new UIImageView(icon);
 		}
 	}
 }
