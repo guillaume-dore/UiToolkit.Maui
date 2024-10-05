@@ -31,7 +31,7 @@
             Source="{FontImage FontFamily='MaterialIconsRound', Glyph={StaticResource IconMD_Expand_more}, Color={StaticResource DarkGray}}" 
             TextColor="{StaticResource DarkGray}" TitleColor="{StaticResource DarkGray}"
             HorizontalTextAlignment="Center" Title="Select a monkey"
-            CornerRadius="50" StrokeThickness="5" Stroke="{StaticResource DarkGray}"
+            CornerRadius="{OnPlatform Android=50, iOS=30}" StrokeThickness="5" Stroke="{StaticResource DarkGray}"
             ItemsSource="{StaticResource array}">
         </uikit:IconPicker>
     </VerticalStackLayout>

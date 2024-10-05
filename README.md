@@ -38,7 +38,7 @@ xmlns:uikit="https://schemas.gd.com/dotnet/2024/maui"
 
 Name|Android|iOS|Windows|MacOS|Tizen|
 :---------------------------:|:---:|:---:|:---:|:---:|:---:|
-**Supported Version** |Android 10 (API 29+)|iOS 11+|Win 10+|N/A|N/A|
+**Supported Version** |Android 10 (API 29+)|iOS 13+|Win 10+|N/A|N/A|
 [ConditionalView](#conditionalview)|✅|✅|✅|✅|✅|
 [IconPicker](#iconpicker)          |✅|✅*|❌|❌|❌|
 [SegmentedButton](#segmentedbutton)|✅|✅|❌|❌|❌|

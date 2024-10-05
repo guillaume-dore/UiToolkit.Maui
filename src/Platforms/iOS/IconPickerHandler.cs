@@ -19,30 +19,6 @@ public partial class IconPickerHandler
 
 	private void OnLoaded(object? sender, EventArgs e)
 	{
-		//PlatformView.BorderStyle = UITextBorderStyle.RoundedRect;
-		//PlatformView.Layer.CornerRadius = 50;
-		//PlatformView.BackgroundColor = UIKit.UIColor.Clear;
-		//PlatformView.Layer.BorderWidth = 0;
-		//PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
-		//PlatformView.BackgroundColor = element.BackgroundColor?.ToPlatform() ?? UIColor.Clear;
-		//PlatformView.Layer.BorderWidth = new(element.StrokeThickness);
-		//PlatformView.Layer.BorderColor = element.Stroke?.ToPlatform()?.CGColor ?? UIColor.Black.CGColor;
-		//PlatformView.Layer.MasksToBounds = false;
-		//PlatformView.Layer.CornerRadius = element.CornerRadius;
-		//PlatformView.BorderStyle = UITextBorderStyle.None;
-		//PlatformView.BorderStyle = UITextBorderStyle.Line;
-		//PlatformView.BackgroundColor = element.Stroke?.ToPlatform();
-		//PlatformView.Layer.BorderWidth = 2;
-		//PlatformView.Layer.BorderColor = element.Stroke?.ToPlatform().CGColor;
-		//PlatformView.Layer.CornerRadius = element.CornerRadius;
-		//PlatformView.Layer.MasksToBounds = true;
-		//PlatformView.LayoutMargins = new UIEdgeInsets(10, 10, 10, 10);
-
-
-
-		//PlatformView.BackgroundColor = UIKit.UIColor.Clear;
-		//PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
-
 		SetBorderLayer();
 		PlatformView.RightViewMode = UITextFieldViewMode.Always;
 		PlatformView.RightView = GetImageView();
@@ -50,8 +26,10 @@ public partial class IconPickerHandler
 
 	private void SetBorderLayer()
 	{
-		//PlatformView.BackgroundColor = VirtualView.Stroke?.ToPlatform();
-		PlatformView.Layer.BorderColor = UIKit.UIColor.Green.CGColor;
+		PlatformView.Layer.CornerCurve = CoreAnimation.CACornerCurve.Circular;
+		PlatformView.Layer.CornerRadius = VirtualView.CornerRadius / UIScreen.MainScreen.NativeScale;
+		PlatformView.Layer.BorderWidth = new nfloat(VirtualView.StrokeThickness) / UIScreen.MainScreen.NativeScale;
+		PlatformView.Layer.BorderColor = VirtualView.Stroke?.ToPlatform().CGColor;
 		PlatformView.Layer.MasksToBounds = true;
 	}
 
