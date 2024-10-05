@@ -1,4 +1,5 @@
-﻿using Microsoft.Maui.Platform;
+﻿using CoreGraphics;
+using Microsoft.Maui.Platform;
 using UIKit;
 
 namespace UiToolkit.Maui.Handlers;
@@ -20,8 +21,9 @@ public partial class IconPickerHandler
 	private void OnLoaded(object? sender, EventArgs e)
 	{
 		SetBorderLayer();
-		PlatformView.RightViewMode = UITextFieldViewMode.Always;
+		PlatformView.RightViewMode = PlatformView.LeftViewMode = UITextFieldViewMode.Always;
 		PlatformView.RightView = GetImageView();
+		PlatformView.LeftView = new(new CGRect(0, 0, PlatformView.RightView.Bounds.Size.Width + 5, PlatformView.RightView.Bounds.Size.Height));
 	}
 
 	private void SetBorderLayer()
@@ -45,6 +47,9 @@ public partial class IconPickerHandler
 		{
 			throw new NotImplementedException(); // Not yet implemented
 		}
-		return new UIImageView(icon);
+		return new UIImageView(icon.CreateResizableImage(new UIEdgeInsets(0, 0, 0, -5)))
+		{
+			ContentMode = UIViewContentMode.ScaleAspectFit
+		};
 	}
 }
