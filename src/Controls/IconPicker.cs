@@ -2,7 +2,7 @@ using Maui.BindableProperty.Generator.Core;
 
 namespace UiToolkit.Maui.Controls;
 
-#pragma warning disable IDE0052, IDE0051
+#pragma warning disable IDE0052, IDE0051, CS0169, CS0414
 public partial class IconPicker : Picker
 {
 	[AutoBindable]

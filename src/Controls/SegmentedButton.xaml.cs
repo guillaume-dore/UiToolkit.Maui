@@ -6,7 +6,7 @@ namespace UiToolkit.Maui.Controls;
 
 public partial class SegmentedButton : Border
 {
-#pragma warning disable IDE0052
+#pragma warning disable IDE0052, CS0169, CS0414
 	[AutoBindable]
 	private readonly string? _fontFamily;
 
@@ -36,7 +36,7 @@ public partial class SegmentedButton : Border
 
 	[AutoBindable(DefaultBindingMode = nameof(BindingMode.TwoWay))]
 	private readonly SegmentedItem? _selectedItem;
-#pragma warning restore IDE0052
+#pragma warning restore IDE0052, CS0169, CS0414
 
 	public SegmentedButton()
 	{
