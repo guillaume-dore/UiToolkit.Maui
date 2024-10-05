@@ -1,6 +1,8 @@
 ﻿# UiToolkit MAUI 
 The .NET UiToolkit is an open-source library that provides a set of controls and styles for building .NET MAUI applications. The toolkit is designed to be a consistent and flexible way to build cross-platform applications with .NET MAUI.
 
+The nuget package is currently available as prerelease build: `dotnet add package UiToolkit.Maui --version 1.0.0-alpha`
+
 ## Getting Started
 In order to use the UiToolkit you need to call the extension method `UseUiToolkit()` in your `MauiProgram.cs` file as follows:
 ```csharp
