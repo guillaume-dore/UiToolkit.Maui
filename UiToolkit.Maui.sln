@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5A563282-AA0E-485D-80CF-A3526112AC81}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
+		README.nuget.md = README.nuget.md
 	EndProjectSection
 EndProject
 Global

@@ -1,7 +1,5 @@
 ﻿# UiToolkit MAUI 
-The .NET UiToolkit is an open-source library that provides a set of controls and styles for building .NET MAUI applications. The toolkit is designed to be a consistent and flexible way to build cross-platform applications with .NET MAUI.
-
-The nuget package is currently available as prerelease build: [nuget link](#https://www.nuget.org/packages/UiToolkit.Maui/).
+The .NET UiToolkit is an open-source library that provides a set of controls and converters for building .NET MAUI applications. The toolkit is designed to be a consistent and flexible way to build cross-platform applications with .NET MAUI.
 
 ## Getting Started
 In order to use the UiToolkit you need to call the extension method `UseUiToolkit()` in your `MauiProgram.cs` file as follows:
@@ -69,7 +67,7 @@ Name          |  Type | Default value | Description |
 </uikit:ConditionalView>
 ```
 
-<br/>It's also possible to declare only a view for the `True` or `False` Binding Property:<br/>
+It's also possible to declare only a view for the `True` or `False` Binding Property:
 
 ```xml
 <uikit:ConditionalView Condition="{Binding BooleanProperty}">
@@ -86,7 +84,6 @@ Name          |  Type | Default value | Description |
 ```
 
 ### IconPicker
-<p align="center"><img src="img/Picker.png"/></p>
 
 `IconPicker` control inherit from `Picker` base control.
 
@@ -112,7 +109,6 @@ Name          |  Type | Default value | Description |
 ```
 
 ### SegmentedButton
-<p align="center"><img src="img/SegmentedButton1.png"/></p>
 
 The `SegmentedButton` control inherit from `ContentView`.
 
@@ -129,8 +125,6 @@ Name          |  Type | Default value | Description |
 `UnselectedIcon` | `ImageSource` | `null` | Font icon to display on the unselected item(s). |
 `ItemsSource` | `IEnumerable<SegmentedItem>` | `Required` | List of segment items. |
 `SelectedItem` | `SegmentedItem` | `null` | `BindingMode.TwoWay` property binded to the selected item. |
-
-#### Usage
 
 ```xml
 <uikit:SegmentedButton 

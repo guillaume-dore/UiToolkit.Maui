@@ -19,10 +19,10 @@
 		<Version>$(VersionPrefix)-$(VersionSuffix)</Version>
 		<PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/guillaume-dore/UiToolkit.Maui</RepositoryUrl>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageTags>Maui;c#;iOS;Android;Mobile;UI</PackageTags>
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PackageReadmeFile>README.nuget.md</PackageReadmeFile>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 	</PropertyGroup>
 
