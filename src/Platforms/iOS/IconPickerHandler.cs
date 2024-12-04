@@ -1,11 +1,27 @@
 ﻿using CoreGraphics;
 using Microsoft.Maui.Platform;
 using UIKit;
+using UiToolkit.Maui.Controls;
 
 namespace UiToolkit.Maui.Handlers;
 
 public partial class IconPickerHandler
 {
+	public static void MapSource(IconPickerHandler handler, IconPicker picker)
+	{
+		throw new NotImplementedException();
+	}
+
+	public static void MapCornerRadius(IconPickerHandler handler, IconPicker picker)
+	{
+		throw new NotImplementedException();
+	}
+
+	public static void MapStroke(IconPickerHandler handler, IconPicker picker)
+	{
+		throw new NotImplementedException();
+	}
+
 	protected override void ConnectHandler(MauiPicker platformView)
 	{
 		base.ConnectHandler(platformView);

@@ -10,6 +10,24 @@ namespace UiToolkit.Maui.Handlers;
 
 public partial class IconPickerHandler
 {
+	public static void MapSource(IconPickerHandler handler, IconPicker picker)
+	{
+		if (handler.PlatformView.Background is LayerDrawable layerDrawable)
+			layerDrawable.SetDrawable(1, handler.GetImageSourceAsDrawable(picker.Source).Result);
+	}
+
+	public static void MapCornerRadius(IconPickerHandler handler, IconPicker picker)
+	{
+		if (handler.PlatformView.Background is LayerDrawable layerDrawable && layerDrawable.GetDrawable(0) is GradientDrawable gradientDrawable)
+			gradientDrawable.SetCornerRadius(picker.CornerRadius);
+	}
+
+	public static void MapStroke(IconPickerHandler handler, IconPicker picker)
+	{
+		if (handler.PlatformView.Background is LayerDrawable layerDrawable && layerDrawable.GetDrawable(0) is GradientDrawable gradientDrawable)
+			gradientDrawable.SetStroke(Convert.ToInt32(picker.StrokeThickness), picker.Stroke?.ToPlatform() ?? Android.Graphics.Color.Black);
+	}
+
 	protected override void ConnectHandler(MauiPicker platformView)
 	{
 		base.ConnectHandler(platformView);

@@ -29,9 +29,9 @@
         <Label Text="Picker with rounded corners:" HorizontalOptions="Center"/>
         <uikit:IconPicker MaximumWidthRequest="200"
             Source="{FontImage FontFamily='MaterialIconsRound', Glyph={StaticResource IconMD_Expand_more}, Color={StaticResource DarkGray}}" 
-            TextColor="{StaticResource DarkGray}" TitleColor="{StaticResource DarkGray}"
+            TextColor="{AppThemeBinding Light={StaticResource DarkGray}, Dark='White'}" TitleColor="{StaticResource DarkGray}"
             HorizontalTextAlignment="Center" Title="Select a monkey"
-            CornerRadius="{OnPlatform Android=50, iOS=30}" StrokeThickness="5" Stroke="{StaticResource DarkGray}"
+            CornerRadius="{OnPlatform Android=50, iOS=30}" StrokeThickness="5" Stroke="{AppThemeBinding Light={StaticResource DarkGray}, Dark='White'}"
             ItemsSource="{StaticResource array}">
         </uikit:IconPicker>
     </VerticalStackLayout>
