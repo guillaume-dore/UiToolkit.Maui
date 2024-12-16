@@ -25,17 +25,11 @@ public partial class SegmentedButton : Border
 	[AutoBindable]
 	private readonly Color? _unselectedBackground;
 
-	[AutoBindable]
-	private readonly ImageSource? _selectedIcon;
-
-	[AutoBindable]
-	private readonly ImageSource? _unselectedIcon;
-
 	[AutoBindable(ValidateValue = nameof(IsSourceValid))]
-	private readonly IEnumerable<SegmentedItem> _itemsSource = null!;
+	private readonly IEnumerable<SegmentItem> _itemsSource = null!;
 
 	[AutoBindable(DefaultBindingMode = nameof(BindingMode.TwoWay))]
-	private readonly SegmentedItem? _selectedItem;
+	private readonly SegmentItem? _selectedItem;
 #pragma warning restore IDE0052, CS0169, CS0414
 
 	public SegmentedButton()
@@ -48,12 +42,12 @@ public partial class SegmentedButton : Border
 	public string GroupName { get; } = Guid.NewGuid().ToString();
 
 	private static bool IsSourceValid(BindableObject _, object value)
-		=> value is IEnumerable<SegmentedItem> items && items.Any();
+		=> value is IEnumerable<SegmentItem> items && items.Any();
 
 	private void SegmentItem_Clicked(object sender, EventArgs e)
 	{
 		Button obj = (Button)sender;
 		RadioButton radio = (RadioButton)obj.Parent.Parent;
-		SelectedItem = (SegmentedItem)radio.Value;
+		SelectedItem = (SegmentItem)radio.Value;
 	}
 }

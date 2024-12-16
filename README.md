@@ -127,8 +127,8 @@ Name          |  Type | Default value | Description |
 `UnselectedBackground` | `Color` | `null` | Background color of the unselected item(s). |
 `SelectedIcon` | `ImageSource` | `null` | Font icon to display on the selected item. |
 `UnselectedIcon` | `ImageSource` | `null` | Font icon to display on the unselected item(s). |
-`ItemsSource` | `IEnumerable<SegmentedItem>` | `Required` | List of segment items. |
-`SelectedItem` | `SegmentedItem` | `null` | `BindingMode.TwoWay` property binded to the selected item. |
+`ItemsSource` | `IEnumerable<SegmentItem>` | `Required` | List of segment items. |
+`SelectedItem` | `SegmentItem` | `null` | `BindingMode.TwoWay` property binded to the selected item. |
 
 #### Usage
 
